@@ -382,7 +382,10 @@ def genindex_nodes(genindexentries):
     for key, entries in genindexentries:
         #from pudb import set_trace; set_trace()
         output.append('.. cssclass:: heading4\n\n%s\n\n'%key) # initial
-        for entryname, (links, subitems) in entries:
+        #for entryname, (links, subitems) in entries:
+        for entryname, add_info in entries: #patched-by-acs
+            links = add_info[0] #patched-by-acs
+            subitems = add_info[1] #patched-by-acs
             if links:
                 output.append('`%s <#%s>`_'%(entryname,nodes.make_id(links[0][1])))
                 for i,link in enumerate(links[1:]):
