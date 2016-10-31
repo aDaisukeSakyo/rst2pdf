@@ -246,7 +246,9 @@ class NodeHandler(object):
                 client.pending_targets.append(i)
         except TypeError: #Happens with docutils.node.Text
             pass
-
+        except KeyError as e: #patched-by-acs
+            print("Ignored: %s on %s--GAM" % (e, node)) #patched-by-acs
+            pass # patched-by-acs
         elements = self.getelements(client, node, style)
 
         if node.line and client.debugLinesPdf:
