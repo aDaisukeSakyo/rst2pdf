@@ -22,6 +22,8 @@ except ImportError:
 import re
 import sys
 import os
+import codecs
+
 from os import path
 from os.path import abspath, dirname, expanduser, join
 from pprint import pprint
@@ -117,7 +119,7 @@ class PDFBuilder(Builder):
                                 )
 
                 tgt_file = path.join(self.outdir, targetname + self.out_suffix)
-                destination = FileOutput(destination=open(tgt_file,'wb'), encoding='utf-8')
+                destination = FileOutput(destination=codecs.open(tgt_file,'wb','utf-8'), encoding='utf-8')
                 doctree = self.assemble_doctree(docname,title,author,
                     appendices=opts.get('pdf_appendices', self.config.pdf_appendices) or [])
                 doctree.settings.author=author
